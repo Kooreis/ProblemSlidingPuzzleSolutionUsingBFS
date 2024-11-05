@@ -1,14 +1,10 @@
 ```python
-from queue import Queue
+def valid_moves(board, i, j):
+    moves = [(i-1, j), (i+1, j), (i, j-1), (i, j+1)]
+    return [(x, y) for x, y in moves if 0 <= x < len(board) and 0 <= y < len(board[0])]
 
-def print_board(board):
-    for row in board:
-        print(' '.join(row))
-    print()
-
-def find_empty(board):
-    for i in range(len(board)):
-        for j in range(len(board[i])):
-            if board[i][j] == '_':
-                return i, j
+def make_move(board, i, j, x, y):
+    new_board = [row[:] for row in board]
+    new_board[i][j], new_board[x][y] = new_board[x][y], new_board[i][j]
+    return new_board
 ```
